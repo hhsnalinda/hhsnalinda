@@ -1,0 +1,392 @@
+/* Timeline Enhancements for Detailed Experience */
+.company-header {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+.timeline-bullets {
+    list-style-type: none;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+.timeline-bullets li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.4rem;
+    color: #475569;
+    font-size: 0.95rem;
+}
+.timeline-bullets li::before {
+    content: "•";
+    color: #2563eb;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+.award-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0.4rem 1rem;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+/* Base & Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+html {
+    scroll-behavior: smooth; /* This is the line that enables smooth scrolling */
+}
+body { background-color: #f8fafc; color: #1e293b; line-height: 1.7; }
+a { text-decoration: none; color: inherit; }
+
+/* Typography & Colors */
+h1, h2, h3 { color: #0f172a; font-weight: 700; }
+.text-accent { color: #2563eb; }
+.bg-accent { background-color: #2563eb; color: white; }
+
+/* Navigation */
+nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+.logo { font-size: 2.0rem; font-weight: 800; letter-spacing: -0.5px; }
+.nav-links { display: flex; gap: 1rem; list-style: none; }
+.nav-links a:hover { color: #2563eb; transition: color 0.3s; }
+
+/* Hero Section */
+.hero { display: flex; align-items: flex-start; justify-content: space-between; padding: 5rem 5%; max-width: 1200px; margin: auto; gap: 3rem; }
+.hero-text { 
+    flex: 1; 
+    min-width: 0; /* Prevents the text box from expanding horizontally and squishing the image */
+}
+
+.hero-text h1 { 
+    font-size: 3.5rem; 
+    line-height: 1.1; 
+    margin-bottom: 1.5rem; 
+    min-height: 250px; /* Reserves fixed vertical space so the image stops bobbing up and down */
+}
+.hero-text p { font-size: 1.25rem; color: #475569; margin-bottom: 2rem; max-width: 500px; }
+.hero-img-container { flex: 1; display: flex; justify-content: center; padding-top: 10px;}
+.hero-img { width: 350px; height: 350px; border-radius: 50%; object-fit: cover; border: 8px solid white; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+
+/* Typewriter Cursor Animation */
+.typewriter-cursor {
+    font-weight: 1000;
+    color: #000000; /* Matches your text-accent color */
+    animation: blink 0.30s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.5rem; border-radius: 8px; font-weight: 600; transition: all 0.3s; }
+.btn-primary { background: #2563eb; color: white; }
+.btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); }
+.btn-outline { border: 2px solid #e2e8f0; color: #0f172a; }
+.btn-outline:hover { border-color: #cbd5e1; background: #f1f5f9; }
+
+/* Experience Timeline */
+.section { padding: 10rem 5%; max-width: 1200px; margin: auto; }
+.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; }
+.timeline { position: relative; border-left: 2px solid #e2e8f0; padding-left: 2rem; margin-left: 1rem; }
+.timeline-item { margin-bottom: 3rem; position: relative; }
+.timeline-item::before { content: ''; position: absolute; left: -2.4rem; top: 0; width: 1rem; height: 1rem; background: #2563eb; border-radius: 50%; border: 4px solid #eff6ff; }
+.timeline-date { font-weight: 600; color: #2563eb; margin-bottom: 0.5rem; display: block; }
+.timeline-title { font-size: 1.25rem; margin-bottom: 0.5rem; }
+.timeline-company { font-weight: 600; color: #475569; margin-bottom: 1rem; }
+
+/* Projects Grid */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+.card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); transition: transform 0.3s; }
+.card:hover { transform: translateY(-5px); }
+.card-img { width: 100%; height: 200px; object-fit: cover; }
+.card-content { padding: 1.5rem; }
+.card-title { font-size: 1.25rem; margin-bottom: 0.5rem; }
+/* Card Description & Line Clamping */
+/* Card Description & Smooth Animation */
+.card-desc { 
+    color: #475569; 
+    margin-bottom: 0.5rem; 
+    font-size: 0.95rem; 
+    line-height: 1.6; 
+    
+    /* The Smooth Fold/Dropdown Animation */
+    max-height: 4.8em; /* Exactly 3 lines tall */
+    transition: max-height 0.4s ease-in-out;
+    
+    /* The '...' Ellipsis */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Removes the line limit and expands smoothly */
+.card-desc.expanded {
+    max-height: 500px; /* Allows full expansion */
+    -webkit-line-clamp: unset;
+}
+
+/* 'Read More / Less' Button Styling */
+.read-more-btn {
+    background: transparent;
+    border: none;
+    color: #2563eb;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s;
+}
+.read-more-btn:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tag { background: #f1f5f9; color: #334155; padding: 0.25rem 0.75rem; border-radius: 99px; font-size: 0.85rem; font-weight: 500; }
+
+/* Digital Marketing Section */
+.marketing-banner { background: #0f172a; color: white; padding: 4rem 5%; border-radius: 16px; margin: 1rem auto; max-width: 1200px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.marketing-text { flex: 1; color: #cbd5e1; min-width: 300px; }
+.marketing-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+.stat { background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 8px; min-width: 150px; }
+.stat h4 { font-size: 2rem; color: #3b82f6; margin-bottom: 0.5rem; }
+
+/* Footer */
+footer { background: white; padding: 3rem 5%; text-align: center; border-top: 1px solid #e2e8f0; margin-top: 4rem; }
+.social-links { display: flex; justify-content: center; gap: 1.5rem; margin: 1.5rem 0; font-size: 1.5rem; }
+.social-links a { color: #64748b; transition: color 0.3s; }
+.social-links a:hover { color: #2563eb; }
+
+
+/* Custom WhatsApp Button */
+.btn-whatsapp {
+    background-color: #25d366;
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 6px rgba(37, 211, 102, 0.2);
+}
+
+.btn-whatsapp:hover {
+    background-color: #128c7e;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(37, 211, 102, 0.4);
+}
+
+/* Enhance the WhatsApp Icon */
+.btn-whatsapp i {
+    font-size: 2.5rem; 
+}
+
+/* Responsive Mobile Design - Dropdown Menu */
+    @media (max-width: 768px) {
+        .hero { 
+            flex-direction: column-reverse; 
+            align-items: center; /* Keeps the image in the middle on phones */
+            text-align: left; 
+            padding: 5rem 5%; }
+        
+    .nav-links { 
+        display: flex; /* Kept as flex so items stack correctly */
+        flex-direction: column; 
+        position: absolute; 
+        top: 100%; 
+        left: 0; 
+        width: 100%; 
+        background: white; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+        text-align: right;
+        overflow: hidden;
+        max-height: 0; /* Folded state by default */
+        transition: max-height 0.3s ease-in-out; /* The smooth folding animation */
+    }
+    
+    /* JavaScript adds this class to unfold the menu */
+    .nav-links.active {
+        max-height: 400px; /* Expands to show the links */
+    }
+
+    /* Spacing for mobile links */
+    .nav-links a { 
+        font-size: 1.1rem; 
+        padding: 0; 
+        display: block; 
+        border-bottom: 1px solid #f1f5f9; 
+    }
+    .nav-links a:last-child { border-bottom: none; }
+    .marketing-banner { flex-direction: column; text-align: center; }
+    .marketing-stats { justify-content: center; }
+}
+
+
+/* Transparent Background for Experience Section */
+#experience {
+position: relative;
+border-radius: 16px; /* Optional: rounds the corners of the background */
+overflow: hidden; /* Ensures the background stays inside the section */
+}
+
+/* Transparent Background for Experience Section */
+#experience::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    /* The fix for mobile background locking */
+    background-attachment: fixed;
+    opacity: 0.08; 
+    z-index: -1; 
+}
+/* Fallback for iOS/Mobile devices that force-scroll fixed backgrounds */
+@media (max-width: 768px) {
+#experience::before {
+    background-attachment: scroll; /* Prevents visual glitching on mobile */
+}
+}
+
+    /* --- Floating Action Dock --- */
+    .floating-dock {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 9999; /* Keeps it on top of everything */
+    }
+
+    .dock-btn {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: white;
+        border: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy hover effect */
+        cursor: pointer;
+    }
+
+    /* WhatsApp Specific */
+    .whatsapp-btn {
+        background-color: #25d366;
+    }
+    .whatsapp-btn:hover {
+        background-color: #128c7e;
+        transform: scale(1.1) translateY(-3px);
+        box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+        color: white;
+    }
+
+    /* Go to Top Specific */
+    .top-btn {
+        background-color: #2563eb;
+        opacity: 0; /* Hidden by default */
+        visibility: hidden;
+        transform: translateY(20px) scale(0.9);
+    }
+    .top-btn.show {
+        opacity: 1; /* Shows up when scrolling down */
+        visibility: visible;
+        transform: translateY(0) scale(1);
+    }
+    .top-btn:hover {
+        background-color: #1d4ed8;
+        transform: scale(1.1) translateY(-3px);
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Responsive adjustment for mobile screens */
+    @media (max-width: 768px) {
+        .floating-dock {
+            bottom: 20px;
+            right: 20px;
+        }
+        .dock-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+        }
+    }
+
+    /* --- Contact Form Styles --- */
+    .contact-container {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 3rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    .form-group {
+        margin-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+    .form-group label {
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+    }
+    .form-group input, .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 1rem;
+        color: #1e293b;
+        transition: all 0.3s ease;
+        background-color: #f8fafc;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+        outline: none;
+        border-color: #2563eb;
+        background-color: #ffffff;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+    .submit-btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 1.1rem;
+        padding: 1rem;
+        cursor: pointer;
+        border: none;
+        margin-top: 1rem;
+        background-color: #2563eb;
+        color: white;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    .submit-btn:hover {
+        background-color: #1d4ed8;
+    }
+    
+    /* Mobile adjustment for the form */
+    @media (max-width: 768px) {
+        .contact-container {
+            padding: 1.5rem; }
+    }
