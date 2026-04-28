@@ -60,7 +60,17 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
 .nav-links a:hover { color: #2563eb; transition: color 0.3s; }
 
 /* Hero Section */
-.hero { display: flex; align-items: flex-start; justify-content: space-between; padding: 5rem 5%; max-width: 1200px; margin: auto; gap: 3rem; }
+.hero { 
+    display: flex; 
+    align-items: flex-start; 
+    justify-content: space-between; 
+    padding: 5rem 5%; 
+    max-width: 1200px; 
+    margin: auto; gap: 3rem; 
+}
+
+
+
 .hero-text { 
     flex: 1; 
     min-width: 0; /* Prevents the text box from expanding horizontally and squishing the image */
@@ -90,8 +100,8 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
 
 /* Buttons */
 .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.5rem; border-radius: 8px; font-weight: 600; transition: all 0.3s; }
-.btn-primary { background: #2563eb; color: white; }
-.btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); }
+.btn-primary { background: #2563eb; font-size: larger; color: white; }
+.btn-primary:hover { background: #1d4ed8; transform: scale(1.15); transition: 0.3s; }
 .btn-outline { border: 2px solid #e2e8f0; color: #0f172a; }
 .btn-outline:hover { border-color: #cbd5e1; background: #f1f5f9; }
 
@@ -207,7 +217,7 @@ footer { background: white; padding: 3rem 5%; text-align: center; border-top: 1p
         width: 100%; 
         background: white; 
         box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-        text-align: right;
+        text-align: center;
         overflow: hidden;
         max-height: 0; /* Folded state by default */
         transition: max-height 0.3s ease-in-out; /* The smooth folding animation */
