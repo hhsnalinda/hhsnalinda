@@ -82,7 +82,7 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
     margin-bottom: 1.5rem; 
     min-height: 250px; /* Reserves fixed vertical space so the image stops bobbing up and down */
 }
-.hero-text p { font-size: 1.25rem; color: #475569; margin-bottom: 1rem; max-width: 500px; }
+.hero-text p { font-size: 1.25rem; color: #475569; margin-bottom: 2rem; max-width: 500px; }
 .hero-img-container { flex: 1; display: flex; justify-content: center; padding-top: 10px;}
 .hero-img { 
     width: 350px; 
