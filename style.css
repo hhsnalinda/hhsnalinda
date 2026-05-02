@@ -289,7 +289,7 @@ overflow: hidden; /* Ensures the background stays inside the section */
     background-position: center;
     /* The fix for mobile background locking */
     background-attachment: fixed;
-    opacity: 0.08; 
+    opacity: 0.12; 
     z-index: -1; 
 }
 /* Fallback for iOS/Mobile devices that force-scroll fixed backgrounds */
