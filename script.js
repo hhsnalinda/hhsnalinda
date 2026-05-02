@@ -175,55 +175,6 @@ readMoreBtns.forEach(btn => {
 
 
 
-// --- Splash Screen & Google Sheets Logic ---
-const splashScreen = document.getElementById('splash-screen');
-const mainPortfolio = document.getElementById('main-portfolio');
-const splashForm = document.getElementById('contact-form'); // Renamed variable!
-const splashSubmitBtn = document.getElementById('submit-btn'); // Renamed variable!
-
-// YOUR SPLASH SCREEN GOOGLE APP SCRIPT URL
-const splashScriptURL = 'https://script.google.com/macros/s/AKfycbyxQYmVhj6or_3Uk9XMd0Z5hrDfNBsLya4cfd64l2JFG-FQRaQpCn5mE5oFDllCAaRz/exec';
-
-if (splashForm) {
-    splashForm.addEventListener('submit', e => {
-        e.preventDefault();
-        
-        // Show loading state so they don't click twice
-        splashSubmitBtn.innerHTML = 'Connecting...';
-        splashSubmitBtn.style.opacity = '0.7';
-        splashSubmitBtn.disabled = true;
-
-        // Gather form data
-        let requestBody = new FormData(splashForm);
-
-        // Send to Google Sheets
-        fetch(splashScriptURL, { method: 'POST', body: requestBody })
-            .then(response => {
-                // Success: Hide splash screen, show portfolio
-                splashScreen.classList.add('hidden');
-                mainPortfolio.style.display = 'block';
-                sessionStorage.setItem('portfolioUnlocked', 'true');
-                alert("Welcome to my page!");
-            })
-            .catch(error => {
-                // Failsafe error handling
-                console.error('Error!', error.message);
-                alert("Connection error. Please try again.");
-                splashSubmitBtn.innerHTML = 'Enter Portfolio';
-                splashSubmitBtn.style.opacity = '1';
-                splashSubmitBtn.disabled = false;
-            });
-    });
-}
-
-// Check if they already filled it out this session
-document.addEventListener("DOMContentLoaded", () => {
-    if (sessionStorage.getItem('portfolioUnlocked') === 'true') {
-        if(splashScreen) splashScreen.style.display = 'none';
-        if(mainPortfolio) mainPortfolio.style.display = 'block';
-    }
-});
-
 
 // --- Google Sheets Form Submit Logic (Bottom Contact Area) ---
 const messageForm = document.getElementById('google-contact-form'); // Renamed variable!
