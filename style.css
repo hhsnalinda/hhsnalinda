@@ -431,64 +431,76 @@ overflow: hidden; /* Ensures the background stays inside the section */
 
 
 
-/* --- Horizontal Smooth Scrolling Carousel --- */
-.carousel-container {
-    width: 100%;
-    overflow: hidden; /* Hides everything outside the box */
-    padding: 1rem 0;
+/* --- Interactive Swipe & Arrow Carousel --- */
+.carousel-wrapper {
     position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
 }
 
-/* Creates a frosted fade effect on the left and right edges */
-.carousel-container::before,
-.carousel-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 80px;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none; /* Lets you click cards under the fade */
+.carousel-container {
+    width: 100%;
+    overflow-x: auto; /* Enables native scrolling/swiping */
+    scroll-behavior: smooth; /* Makes the arrow clicks glide smoothly */
+    scroll-snap-type: x mandatory; /* Forces the cards to 'snap' perfectly into the center when swiping stops */
+    padding: 1.5rem 0;
+    
+    /* Hides the ugly default scrollbar */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
-.carousel-container::before {
-    left: 0;
-    background: linear-gradient(to right, #f8fafc 0%, transparent 100%);
-}
-.carousel-container::after {
-    right: 0;
-    background: linear-gradient(to left, #f8fafc 0%, transparent 100%);
+.carousel-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
 }
 
 .carousel-track {
     display: flex;
-    gap: 2rem; /* Space between cards */
-    width: max-content; /* Allows track to stretch as long as it needs */
-    /* 40s is the speed. Change it to 20s for faster, 60s for slower */
-    animation: scrollCards 40s linear infinite; 
+    gap: 2rem;
+    padding: 0 1rem;
 }
 
-/* Pauses the movement when someone tries to read a card! */
-.carousel-track:hover {
-    animation-play-state: paused;
-}
-
-/* Forces the cards to stay a specific width and not shrink */
+/* Forces the cards to hold their shape and snap to the center */
 .carousel-track .card {
     width: 350px; 
     flex-shrink: 0;
-    white-space: normal;
+    scroll-snap-align: center; /* The magic snapping rule */
 }
 
-/* The actual movement animation */
-@keyframes scrollCards {
-    0% { transform: translateX(0); }
-    /* Moves exactly half the track width (plus half the gap) to create a perfect loop */
-    100% { transform: translateX(calc(-50% - 1rem)); } 
+/* --- Arrow Button Styling --- */
+.carousel-btn {
+    position: absolute;
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    color: #2563eb;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
 }
 
-/* Mobile adjustments */
+.carousel-btn:hover {
+    background-color: #2563eb;
+    color: white;
+    transform: scale(1.1);
+}
+
+.left-btn { left: -20px; }
+.right-btn { right: -20px; }
+
+/* Mobile Adjustments */
 @media (max-width: 768px) {
     .carousel-track .card {
-        width: 300px; /* Slightly smaller cards on phones */
+        width: 300px; /* Smaller cards for phones */
+    }
+    .carousel-btn {
+        display: none; /* Hides arrows on mobile so users just use their fingers! */
     }
 }
