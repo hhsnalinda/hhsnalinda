@@ -3,78 +3,66 @@ const mobileMenu = document.getElementById('mobile-menu');
 const menuLinks = document.querySelectorAll('.menu-link');
 let isMenuOpen = false;
 
-// Listen for scrolling
+// 1. Listen for scrolling
 window.addEventListener('scroll', () => {
-    // Only apply this logic on mobile screens
     if (window.innerWidth <= 768) {
         if (window.scrollY > 50) {
-            // Scrolled down: Change text to Menu icon
-            if (!isMenuOpen) {
-                logo.innerHTML = '<i class="fas fa-bars"></i> Menu';
+            if (!isMenuOpen) logo.innerHTML = '<i class="fa fa-chevron-circle-down"></i> Menu';
+        } else {
+            if (!isMenuOpen) logo.innerHTML = 'hhsNalinda';
+        }
+    }
+});
+
+// 2. Listen for clicks on the Logo/Menu button
+if (logo) {
+    logo.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault(); 
+            
+            // 🔴 THE MAGIC FIX: This stops the click from triggering the "Close" bug!
+            e.stopPropagation(); 
+            
+            isMenuOpen = !isMenuOpen;
+            
+
+            
+            if (isMenuOpen) {
+                logo.innerHTML = '<i class="fa fa-chevron-circle-up"></i> Close';  
+                mobileMenu.classList.add('active');
+            } else {
+                // Check where we are on the page to determine what text to show
+                logo.innerHTML = window.scrollY > 50 ? '<i class="fa fa-chevron-circle-down"></i> Menu' : 'hhsNalinda';
+                mobileMenu.classList.remove('active');
             }
-        } else {
-            // At top: Change back to Name and close menu
-            logo.innerHTML = 'hhsNalinda';
-            mobileMenu.classList.remove('active');
-            isMenuOpen = false;
         }
-    }
-});
+    });
+}
 
-// Listen for clicks on the Logo/Menu button
-logo.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768 && window.scrollY > 50) {
-        e.preventDefault(); // Stop it from jumping to the top immediately
-        isMenuOpen = !isMenuOpen;
-        
-        if (isMenuOpen) {
-            logo.innerHTML = '<i class="fas fa-times"></i> Close';
-            mobileMenu.classList.add('active');
-        } else {
-            logo.innerHTML = '<i class="fas fa-bars"></i> Menu';
-            mobileMenu.classList.remove('active');
-        }
-    }
-});
-
-// Close (fold) the menu automatically when a link is clicked
+// 3. Close (fold) the menu automatically when a link is clicked
 menuLinks.forEach(link => {
     link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
-            // Fold the menu
             mobileMenu.classList.remove('active');
             isMenuOpen = false;
             
-            // Reset the header button back to "Menu"
             setTimeout(() => {
-                if (window.scrollY > 50) {
-                    logo.innerHTML = '<i class="fas fa-bars"></i> Menu';
-                }
-            }, 100); // Slight delay to ensure scroll starts first
+                logo.innerHTML = window.scrollY > 50 ? '<i class="fa fa-chevron-circle-down"></i> Menu' : 'hhsNalinda';
+            }, 100); 
         }
     });
 });
 
-// --- Click Outside to Close Mobile Menu ---
+// 4. Click Outside to Close Mobile Menu
 document.addEventListener('click', (event) => {
-    // Only run this if we are on mobile and the menu is actually open
     if (window.innerWidth <= 768 && isMenuOpen) {
-        
-        // Check if the user's tap was OUTSIDE the menu and OUTSIDE the logo button
         const clickedInsideMenu = mobileMenu.contains(event.target);
-        const clickedOnLogo = logo.contains(event.target);
-
-        if (!clickedInsideMenu && !clickedOnLogo) {
-            // Fold the menu
+        
+        // Because of stopPropagation above, we only need to check if they clicked the dropdown
+        if (!clickedInsideMenu) {
             mobileMenu.classList.remove('active');
             isMenuOpen = false;
-            
-            // Reset the logo text depending on where we are scrolled
-            if (window.scrollY > 50) {
-                logo.innerHTML = '<i class="fas fa-bars"></i> Menu';
-            } else {
-                logo.innerHTML = 'hhsNalinda';
-            }
+            logo.innerHTML = window.scrollY > 50 ? '<i class="fa fa-chevron-circle-down"></i> Menu' : 'hhsNalinda';
         }
     }
 });
