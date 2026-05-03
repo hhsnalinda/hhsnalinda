@@ -504,3 +504,10 @@ overflow: hidden; /* Ensures the background stays inside the section */
         display: none; /* Hides arrows on mobile so users just use their fingers! */
     }
 }
+
+/* --- Mobile Menu Touch Optimizations --- */
+.logo {
+    cursor: pointer;
+    touch-action: manipulation; /* Removes the 300ms mobile tap delay */
+    -webkit-tap-highlight-color: transparent; /* Removes the ugly blue tap box on iPhones */
+}
