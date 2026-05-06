@@ -43,7 +43,12 @@
         <meta name="twitter:image" content="https://hhsnalinda.github.io/images/thumbnail.png">
     </head>
 
-    <body>        
+    <body>  
+
+    <!-- Facebook SDK for Live Feed -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v19.0"></script>
+        
         
         <nav>
             <a href="#" class="logo" id="dynamic-logo">hhsNalinda</a>
@@ -473,47 +478,34 @@
             </div>
         </section>
 
-        <section id="socialmedia-update" class="section" style="background-color: #ffffff">
-            <h2 class="section-title">Social Media Updates</h2>
-            <p style="color: #475569; text-align: center; margin-top: -1.5rem; margin-bottom: 3rem">
+        <section id="social-updates" class="section" style="background-color: #f8fafc; text-align: center;">
+            <h2 class="section-title">Latest Updates</h2>
+            <p style="color: #475569; margin-top: -1.5rem; margin-bottom: 1.5rem">
+                Stay up to date with my latest professional insights and activities.
             </p>
 
-            <div
-                class="socialmediaupdate-container"
-                style="max-width: 800px; margin: auto; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1)">
-                <div
-                    style="
-                        position: relative;
-                        width: 100%;
-                        height: 0;
-                        padding-top: 56.25%;
-                        padding-bottom: 0;
-                        overflow: hidden;
-                        border-radius: 12px;
-                        will-change: transform;
-                    ">
-                    <iframe
-                        title="Hi"
-                        loading="lazy"
-                        style="
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            top: 0;
-                            left: 0;
-                            border: none;
-                            padding: 0;
-                            margin: 0;
-                        "
-                        src="https://web.facebook.com/hhsnalinda/"
-                        allowfullscreen="allowfullscreen"
-                        allow="fullscreen">
-                    </iframe>
+            <!-- This container centers the Facebook feed -->
+            <div style="display: center; width: 100%;">
+                
+                <!-- The Official Facebook Page Plugin -->
+                <div class="fb-page" 
+                    data-href="https://web.facebook.com/hhsnalinda" 
+                    data-tabs="timeline" 
+                    data-width="500" 
+                    data-height="600" 
+                    data-small-header="false" 
+                    data-adapt-container-width="true" 
+                    data-hide-cover="false" 
+                    data-show-facepile="true">
+                    
+                    <blockquote cite="https://web.facebook.com/hhsnalinda" class="fb-xfbml-parse-ignore">
+                        <a href="https://web.facebook.com/hhsnalinda">hhsNalinda</a>
+                    </blockquote>
                 </div>
+
             </div>
-
         </section>
-
+        
         <footer id="footer">
             <h2 style="color: rgb(5, 138, 34); margin-bottom: 0rem">Let's Talk - Just contact me!</h2>
             <p style="color: #ff0064; margin-top: 0rem; font-size: large">පහත සබැඳින් හරහා දැන්ම සම්බන්ධ වන්න!.</p>
