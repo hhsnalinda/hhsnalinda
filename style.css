@@ -62,21 +62,23 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
 
 /* Hero Section */
 .hero { 
-   
-    /* Layout properties */
     display: flex; 
     align-items: flex-start; 
     justify-content: space-between; 
     padding: 5rem 5%; 
     max-width: 1200px; 
-    margin: auto; 
-     /* Hero area Background Image (Make sure 'Images' has a capital I if your folder does!) */
-    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(248, 250, 252, 0.7)), 
-        url('Images/hero-bg1.jpg');                                                    
+    margin: auto; gap: 3rem; 
     
+    /*Hero area Background Image*/
+    background-image: linear-gradient(rgba(255, 255, 255, 0.36), rgba(248, 250, 252, 0.95)), 
+     url('images/hero-bg1.jpg');   /* The fix for mobile background locking */
+    opacity: 1; 
+    z-index: -1; 
     background-size: cover;
     background-position: top;
-    background-attachment: fixed; /* The fix for mobile background locking */ 
+    /* The fix for mobile background locking */
+    background-attachment: fixed;
+    z-index: -1; 
 }
 
 
