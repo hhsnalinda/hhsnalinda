@@ -64,7 +64,7 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
      /*Hero area Background Image*/
     background-image: linear-gradient(rgba(255, 255, 255, 0.36), rgba(248, 250, 252, 0.95)), 
      url('images/hero-bg1.jpg');   /* The fix for mobile background locking */
-    opacity: 1; 
+    opacity: 75; 
     z-index: -1; 
     background-size: cover;
     background-position: top;
