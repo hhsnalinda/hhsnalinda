@@ -64,7 +64,7 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
 .hero { 
     /* Hero area Background Image (Make sure 'Images' has a capital I if your folder does!) */
     background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(248, 250, 252, 0.7)), 
-                      url('Images/hero-bg1.jpg');                                                    
+        url('images/hero-bg1.jpg');                                                    
     
     background-size: cover;
     background-position: top;
