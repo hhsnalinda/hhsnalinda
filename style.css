@@ -165,9 +165,7 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
 
 /* Hero Section */
 .hero { 
-
-     /*Hero area Background Image*/
-        display: flex; 
+    display: flex; 
     align-items: flex-start; 
     justify-content: space-between; 
     padding: 5rem 5%; 
@@ -183,6 +181,7 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
     background-position: top;
     /* The fix for mobile background locking */
     background-attachment: fixed;
+    
 }
 
 .hero-text { 
